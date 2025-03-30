@@ -49,10 +49,10 @@ A document ingestion pipeline with automatic classification, structured data ext
 
 **High-Level Flow: Platform**
 
-2. **Ingestion** – Documents are added to the system via endpoint, message bus, AWS event, etc.
-3. **Storage** – Files are persisted in original form to cloud storage.
-4. **Classification and Extraction** – Structured information is inferred using text recognition plus semantic graph-based entity linking  using LayoutMLv3 (FOSS) or NAVER Donut.
-5. **Persist Structured Data** – Final structured data is stored in the system’s datastore
+1. **Ingestion** – Documents are added to the system via endpoint, message bus, AWS event, etc.
+2. **Storage** – Files are persisted in original form to cloud storage.
+3. **Classification and Extraction** – Structured information is inferred using text recognition plus semantic graph-based entity linking  using LayoutMLv3 (FOSS) or NAVER Donut.
+4. **Persist Structured Data** – Final structured data is stored in the system’s datastore
 
 **Sample JSON** (from [NAVER CLOVA Donut](https://arxiv.org/abs/2111.15664))
 
@@ -272,7 +272,7 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **User feedback loops**    | Correction capture, confidence scoring, retraining hooks |
 | **Data & insights**        | Usage analytics, structured data reporting, model metrics |
 
-## Phase 1: authentication, authorization & audit
+### Phase 1: authentication, authorization & audit
 
 | Task                          | Description |
 |-------------------------------|-------------|
@@ -281,7 +281,7 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **Audit logging**          | Log user actions like uploads, corrections, type overrides, review completions, etc., to a write-optimized audit table or stream |
 | **Document-level access policies** | Ensure users only access documents they’re authorized to (e.g., by project, region, or client) |
 
-## Phase 2: CI/CD, testing, and observability
+### Phase 2: CI/CD, testing, and observability
 
 | Task                          | Description |
 |-------------------------------|-------------|
@@ -291,7 +291,7 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **Observability**          | Integrate with services like Honeycomb, Grafana, or New Relic for tracking latency, errors, queue depth, etc. |
 | **Logging & tracing**     | Ensure all services emit structured logs and support request-level tracing (OpenTelemetry, Logfmt/JSON logs) |
 
-## Phase 3: Data quality, analytics & feedback
+### Phase 3: Data quality, analytics & feedback
 
 | Task                          | Description |
 |-------------------------------|-------------|
@@ -300,7 +300,7 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **Correction feedback loop**| Store user corrections in a training dataset for future finetuning |
 | **Data export / reporting** | Enable exports of structured data by project, vendor, time window for reconciliation/reporting |
 
-## Phase 4: Scalability & performance enhancements
+### Phase 4: Scalability & performance enhancements
 
 | Task                          | Description |
 |-------------------------------|-------------|
@@ -309,7 +309,7 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **Batching & streaming**    | Add support for batch uploads and streaming extraction pipelines |
 | **GPU-aware job scheduling**| Route model jobs to available GPU nodes based on load, runtime estimate, or model type |
 
-## Phase 5: Compliance, privacy & production hardening
+### Phase 5: Compliance, privacy & production hardening
 
 | Task                          | Description |
 |-------------------------------|-------------|
@@ -318,12 +318,3 @@ Following successful delivery of the POC, we focus on extending the platform acr
 | **PII redaction**           | Add preprocessing layer to detect and optionally redact sensitive information in documents |
 | **Compliance readiness**   | Lay groundwork for SOC2 / HIPAA-style control domains (access control, auditing, incident tracking) |
 
-## Roadmap summary table
-
-| Phase | Scope | Dependencies |
-|-------|-------|--------------|
-| 1. **Auth + audit** | Secure access, user traceability | User schema, LiveView hooks |
-| 2. **CI/CD + monitoring** | Reliable deployments, observability | Docker, GitHub Actions, Oban telemetry |
-| 3. **Analytics + feedback** | Insight into performance & usage | Structured schema, metrics DB |
-| 4. **Scalability** | Handle production workloads | AWS infra, GPU autoscaling |
-| 5. **Compliance** | Support enterprise needs | Audit logs, policies, legal input |
