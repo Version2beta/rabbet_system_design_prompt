@@ -27,16 +27,14 @@ flowchart LR
     end
 
     %% User Flow
-    UA_Upload --> UA_View
     UA_Upload --> Ingest
-    UA_View --> Store
-    UA_View --> UA_Review
-    UA_Review --> Persist
 
     %% Platform Flow
     Ingest --> Store
+    Store --> UA_View
     Store --> Extract
     Extract --> Persist
+    Persist <--> UA_Review
 ```
 
 A document ingestion pipeline with automatic classification, structured data extraction, and a correction UI, implemented as a platform with one or more user applications.
